@@ -32,6 +32,13 @@ Documento vivo de verificación funcional, criptográfica, de accesibilidad y en
 | **UT-07** | `VaultSessionManagerTest` | Sesión inicial bloqueada | Observar `isUnlocked`, llamar `unlock`, `withDek` y `lock` | `false -> true -> false`; `withDek` limpia copia temporal; tras `lock` lanza `VaultLockedException` | Pasado (4/4) |
 | **UT-08** | `AndroidKeystoreManagerCipherOpsTest` | `Cipher` AES/GCM/NoPadding real | Envolver/desenvolver `DEK` y manipular ciphertext | `DEK` recuperada idéntica; manipulación lanza `AuthenticationFailedException` | Pasado (2/2) |
 
+### Paso 3 — Room y repositorios cifrados
+| ID | Caso | Condición | Acción | Resultado esperado | Estado |
+| :--- | :--- | :--- | :--- | :--- | :---: |
+| **UT-09** | `CredentialCryptoMapperTest` | Credencial completa con Unicode | Mapear `toEntity` / `toDomain`, intercambiar columnas y llamar `toString()` | Ningún texto en claro en entidad; intercambio lanza `AuthenticationFailedException`; `toString()` sin secretos | Pasado (3/3) |
+| **UT-10** | `VaultRepositoryImplTest` | DAO mockeado + `VaultSessionManager` real | Guardar/leer con bóveda cerrada y abierta; observar `observeCredentials()` con Turbine | Bloqueada lanza `VaultLockedException` sin tocar DAO; `observeCredentials()` emite `[] -> [credencial] -> []` | Pasado (4/4) |
+| **UT-11** | `VaultMetaRepositoryImplTest` | `VaultMetaDao` mockeado | Consultar inicialización, guardar/leer metadatos, actualizar biometría y `toString()` | Delegación correcta en `dispatchers.io` y `toString()` sin sal ni claves | Pasado (3/3) |
+
 ---
 
 ## 3. Pruebas manuales y en dispositivo físico (pendientes de Hito 2 / Hito 3)

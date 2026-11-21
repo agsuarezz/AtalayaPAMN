@@ -23,7 +23,7 @@ Atalaya ofrece una bóveda de contraseñas **100 % local (offline-first)** con i
 - **Copia de seguridad cifrada:** Exportación e importación mediante Storage Access Framework (SAF).
 - **Accesibilidad:** Contraste WCAG AA, áreas táctiles ≥ 48 dp, texto escalable (`sp`), etiquetas limpias para TalkBack y respeto al ajuste de animaciones reducidas.
 
-> **Estado actual:** Paso 1 completado (esqueleto Gradle, Hilt, tema retro Material 3, navegación base y CI). Las capturas de pantalla se añadirán al completar las pantallas funcionales.
+> **Estado actual:** Paso 3 completado (Room `2.8.5` y repositorios cifrados con AAD por columna). Las capturas de pantalla se añadirán al completar las pantallas funcionales.
 
 ---
 
@@ -37,6 +37,7 @@ Atalaya ofrece una bóveda de contraseñas **100 % local (offline-first)** con i
 | Jetpack Compose BOM | `2026.02.01` | UI declarativa + Material 3 |
 | Navigation Compose | `2.10.2` | Navegación entre pantallas |
 | Dagger Hilt + KSP | `2.60.1` / `2.3.12` | Inyección de dependencias |
+| Room | `2.8.5` | Persistencia SQLite local |
 | AndroidX Lifecycle | `2.11.1` | ViewModels y observabilidad de ciclo de vida |
 | Kotlinx Coroutines | `1.11.0` | Asincronía y `Flow` |
 | JUnit / MockK / Turbine | `4.13.2` / `1.14.12` / `1.2.1` | Tests unitarios y de flujos |

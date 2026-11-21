@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Atalaya</string>
+
+    <!-- Navegación y acciones comunes -->
+    <string name="nav_back_cd">Volver a la pantalla anterior</string>
+    <string name="status_prefix_ok">[OK]</string>
+    <string name="status_prefix_info">[INFO]</string>
+
+    <!-- Pantalla Boot -->
+    <string name="boot_header">ATALAYA KERNEL SECURE v1.0</string>
+    <string name="boot_line_1">[OK] Inicializando entorno aislado offline-first...</string>
+    <string name="boot_line_2">[OK] Protección de pantalla FLAG_SECURE activa</string>
+    <string name="boot_line_3">[OK] Copias de seguridad del sistema deshabilitadas</string>
+    <string name="boot_line_4">[OK] Sistema listo. Solicitando acceso a bóveda...</string>
+
+    <!-- Pantalla Desbloqueo (esqueleto) -->
+    <string name="unlock_title">Acceso a bóveda</string>
+    <string name="unlock_subtitle">Consola local cifrada sin conexión externa.</string>
+    <string name="unlock_master_label">Contraseña maestra</string>
+    <string name="unlock_master_placeholder">Introduce la clave maestra</string>
+    <string name="unlock_action_enter">Desbloquear bóveda</string>
+    <string name="unlock_pending_notice">[INFO] Paso 1: la validación criptográfica se conectará en los pasos 2–4.</string>
+
+    <!-- Pantalla Bóveda (esqueleto) -->
+    <string name="vault_title">Bóveda local</string>
+    <string name="vault_status_ready">[OK] Sesión local activa en modo esqueleto.</string>
+    <string name="vault_empty_notice">Aquí se listarán tus credenciales cifradas con búsqueda y filtros por categoría.</string>
+    <string name="vault_action_generator">Abrir generador</string>
+    <string name="vault_action_settings">Abrir ajustes</string>
+    <string name="vault_action_lock">Bloquear bóveda</string>
+
+    <!-- Pantalla Generador (esqueleto) -->
+    <string name="generator_title">Generador de claves</string>
+    <string name="generator_status_ready">[OK] Módulo de consola de generación preparado.</string>
+    <string name="generator_placeholder_notice">Aquí se configurará longitud, símbolos, entropía y copia segura.</string>
+
+    <!-- Pantalla Ajustes (esqueleto) -->
+    <string name="settings_title">Ajustes de seguridad</string>
+    <string name="settings_status_ready">[OK] Panel de configuración de Atalaya.</string>
+    <string name="settings_placeholder_notice">Aquí se configurarán biometría, sensores de bloqueo, autobloqueo, HIBP y copia cifrada.</string>
+</resources>

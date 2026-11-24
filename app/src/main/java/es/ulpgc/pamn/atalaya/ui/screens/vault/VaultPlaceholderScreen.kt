@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import es.ulpgc.pamn.atalaya.R
 import es.ulpgc.pamn.atalaya.ui.components.RetroButton
 import es.ulpgc.pamn.atalaya.ui.components.RetroButtonVariant
@@ -31,7 +32,8 @@ fun VaultPlaceholderScreen(
     onOpenGenerator: () -> Unit,
     onOpenSettings: () -> Unit,
     onLockVault: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    lockViewModel: VaultLockViewModel = hiltViewModel()
 ) {
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -78,7 +80,10 @@ fun VaultPlaceholderScreen(
 
             RetroButton(
                 text = stringResource(R.string.vault_action_lock),
-                onClick = onLockVault,
+                onClick = {
+                    lockViewModel.lockVault()
+                    onLockVault()
+                },
                 variant = RetroButtonVariant.WARNING,
                 modifier = Modifier.fillMaxWidth()
             )

@@ -39,6 +39,20 @@ Documento vivo de verificación funcional, criptográfica, de accesibilidad y en
 | **UT-10** | `VaultRepositoryImplTest` | DAO mockeado + `VaultSessionManager` real | Guardar/leer con bóveda cerrada y abierta; observar `observeCredentials()` con Turbine | Bloqueada lanza `VaultLockedException` sin tocar DAO; `observeCredentials()` emite `[] -> [credencial] -> []` | Pasado (4/4) |
 | **UT-11** | `VaultMetaRepositoryImplTest` | `VaultMetaDao` mockeado | Consultar inicialización, guardar/leer metadatos, actualizar biometría y `toString()` | Delegación correcta en `dispatchers.io` y `toString()` sin sal ni claves | Pasado (3/3) |
 
+### Paso 4 — Alta de contraseña maestra y desbloqueo biométrico
+| ID | Caso | Condición | Acción | Resultado esperado | Estado |
+| :--- | :--- | :--- | :--- | :--- | :---: |
+| **UT-12** | `EvaluatePasswordStrengthUseCaseTest` | Claves vacías, < 10 chars y mixtas largas | Evaluar fortaleza y entropía | `< 10` caracteres queda acotado a `WEAK`/`VERY_WEAK`; claves largas con varias clases alcanzan `STRONG`/`VERY_STRONG` | Pasado (5/5) |
+| **UT-13** | `CreateMasterPasswordUseCaseTest` | Contraseña válida ≥ 10 chars, corta o bóveda ya creada | Ejecutar alta de maestra | Rechaza `< 10` o duplicado; guarda sal 16B + `310.000` iteraciones + `DEK` envuelta con AAD, abre sesión y limpia `CharArray` | Pasado (3/3) |
+| **UT-14** | `UnlockVaultWithPasswordUseCaseTest` | Bóveda inicializada, vacía o corrupta | Probar clave correcta, errónea y metadatos rotos | Clave correcta abre sesión y limpia `CharArray`; errónea da `InvalidPassword`; rotos dan `CorruptedVault` | Pasado (4/4) |
+| **UT-15** | `BiometricAuthUseCasesTest` | `KeystoreManager`, `VaultMetaRepository` y `VaultSessionManager` | Preparar/completar registro, desbloquear, invalidar clave y desactivar | Enuelve/desenvuelve `DEK`; ante `KeyInvalidatedException` borra clave y metadato; `LockVaultUseCase` cierra sesión | Pasado (6/6) |
+| **UT-16** | `AuthViewModelTest` | Casos de uso mockeados + Turbine + `StandardTestDispatcher` | Flujos de setup, error de carga, cancelación biométrica, invalidación, lockout y desbloqueo | Emite `Loading -> Success/Error` y eventos `LaunchBiometricPrompt` / `NavigateToVault` limpiando contraseñas tras éxito | Pasado (9/9) |
+
+### Pruebas de interfaz Compose (`androidTest`, compilación verificada con `compileDebugAndroidTestKotlin`)
+| ID | Caso | Condición | Acción | Resultado esperado | Estado |
+| :--- | :--- | :--- | :--- | :--- | :---: |
+| **IT-01** | `AuthScreenTest` | `AuthScreenContent` en modo Setup, Unlock (con/sin biometría) y Error | Renderizar y pulsar acciones con `createComposeRule()` | Muestra campos/fortaleza/opción biométrica, oculta botón biométrico si no disponible y dispara callbacks | Compilado (pendiente ejecución en dispositivo/emulador) |
+
 ---
 
 ## 3. Pruebas manuales y en dispositivo físico (pendientes de Hito 2 / Hito 3)
@@ -54,3 +68,4 @@ Documento vivo de verificación funcional, criptográfica, de accesibilidad y en
 ## 4. Registro de incidencias detectadas y correcciones
 
 - **INC-01 (Paso 1):** `Shape.kt` no compilaba con Material 3 de Compose BOM `2026.02.01` porque el constructor de 8 argumentos de `Shapes` es `internal` y `RectangleShape` no implementa `CornerBasedShape`. **Corrección:** sustituido por `RoundedCornerShape(0.dp)` en los 5 argumentos públicos de `Shapes`.
+- **INC-02 (Paso 4):** En `AuthViewModelTest`, `coVerify { disableBiometricsUseCase() }` fallaba por milisegundos de diferencia en el argumento por defecto `nowEpochMillis = System.currentTimeMillis()`. **Corrección:** verificación mediante `disableBiometricsUseCase(any())`.

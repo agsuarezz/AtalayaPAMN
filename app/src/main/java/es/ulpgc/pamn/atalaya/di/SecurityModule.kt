@@ -5,7 +5,9 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import es.ulpgc.pamn.atalaya.core.security.AesGcmCipher
+import es.ulpgc.pamn.atalaya.core.security.AndroidBiometricAvailabilityChecker
 import es.ulpgc.pamn.atalaya.core.security.AndroidKeystoreManager
+import es.ulpgc.pamn.atalaya.core.security.BiometricAvailabilityChecker
 import es.ulpgc.pamn.atalaya.core.security.DefaultAesGcmCipher
 import es.ulpgc.pamn.atalaya.core.security.KeyDerivation
 import es.ulpgc.pamn.atalaya.core.security.KeystoreManager
@@ -34,4 +36,10 @@ abstract class SecurityModule {
     abstract fun bindKeystoreManager(
         implementation: AndroidKeystoreManager
     ): KeystoreManager
+
+    @Binds
+    @Singleton
+    abstract fun bindBiometricAvailabilityChecker(
+        implementation: AndroidBiometricAvailabilityChecker
+    ): BiometricAvailabilityChecker
 }

@@ -6,6 +6,7 @@
     <string name="nav_back_cd">Volver a la pantalla anterior</string>
     <string name="status_prefix_ok">[OK]</string>
     <string name="status_prefix_info">[INFO]</string>
+    <string name="auth_action_retry">Reintentar</string>
 
     <!-- Pantalla Boot -->
     <string name="boot_header">ATALAYA KERNEL SECURE v1.0</string>
@@ -14,13 +15,70 @@
     <string name="boot_line_3">[OK] Copias de seguridad del sistema deshabilitadas</string>
     <string name="boot_line_4">[OK] Sistema listo. Solicitando acceso a bóveda...</string>
 
-    <!-- Pantalla Desbloqueo (esqueleto) -->
+    <!-- Pantalla Autenticación (Setup y Desbloqueo) -->
+    <string name="auth_setup_title">Inicializar bóveda</string>
+    <string name="auth_setup_intro_title">[INFO] Alta de contraseña maestra local</string>
+    <string name="auth_setup_intro_body">Define una clave maestra de al menos 10 caracteres. Nunca se guarda en claro ni existe recuperación en la nube.</string>
+    <string name="auth_setup_password_label">Contraseña maestra</string>
+    <string name="auth_setup_password_placeholder">Mínimo 10 caracteres</string>
+    <string name="auth_setup_confirm_label">Confirmar contraseña</string>
+    <string name="auth_setup_confirm_placeholder">Repite la contraseña maestra</string>
+    <string name="auth_setup_biometric_title">Activar desbloqueo biométrico</string>
+    <string name="auth_setup_biometric_available">Vincula la bóveda a tu huella mediante Android Keystore.</string>
+    <string name="auth_setup_biometric_not_enrolled">No hay huellas configuradas en los ajustes del sistema.</string>
+    <string name="auth_setup_biometric_unavailable">Hardware biométrico fuerte no disponible en este dispositivo.</string>
+    <string name="auth_setup_action_create">Crear bóveda</string>
+    <string name="auth_setup_action_retry_biometrics">Reintentar biometría</string>
+    <string name="auth_setup_action_skip_biometrics">Entrar sin biometría</string>
+    <string name="auth_setup_processing">[INFO] Derivando clave y cifrando bóveda...</string>
+
+    <!-- Fortaleza de contraseña -->
+    <string name="auth_strength_prefix">Fortaleza: %1$s</string>
+    <string name="auth_strength_very_weak">Muy débil</string>
+    <string name="auth_strength_weak">Débil</string>
+    <string name="auth_strength_medium">Media</string>
+    <string name="auth_strength_strong">Fuerte</string>
+    <string name="auth_strength_very_strong">Muy fuerte</string>
+    <string name="auth_strength_min_length_hint">Requisito mínimo: 10 caracteres</string>
+    <string name="auth_strength_cd">Fortaleza de la contraseña: %1$s</string>
+
+    <!-- Desbloqueo -->
     <string name="unlock_title">Acceso a bóveda</string>
     <string name="unlock_subtitle">Consola local cifrada sin conexión externa.</string>
     <string name="unlock_master_label">Contraseña maestra</string>
     <string name="unlock_master_placeholder">Introduce la clave maestra</string>
     <string name="unlock_action_enter">Desbloquear bóveda</string>
-    <string name="unlock_pending_notice">[INFO] Paso 1: la validación criptográfica se conectará en los pasos 2–4.</string>
+    <string name="unlock_action_biometric">Desbloquear con biometría</string>
+    <string name="unlock_processing">[INFO] Verificando clave criptográfica...</string>
+    <string name="unlock_biometric_unavailable_notice">[INFO] Biometría no disponible: accede con tu contraseña maestra.</string>
+    <string name="unlock_biometric_not_enrolled_notice">[INFO] Sin biometría registrada en el sistema: usa tu contraseña maestra.</string>
+
+    <!-- Visibilidad de contraseña (accesibilidad) -->
+    <string name="auth_show_password_cd">Mostrar contraseña</string>
+    <string name="auth_hide_password_cd">Ocultar contraseña</string>
+
+    <!-- Diálogo BiometricPrompt -->
+    <string name="biometric_prompt_enroll_title">Registrar acceso biométrico</string>
+    <string name="biometric_prompt_enroll_subtitle">Confirma tu identidad para proteger la clave de la bóveda en Keystore.</string>
+    <string name="biometric_prompt_unlock_title">Desbloquear Atalaya</string>
+    <string name="biometric_prompt_unlock_subtitle">Autentica tu huella para descifrar la bóveda local.</string>
+    <string name="biometric_prompt_cancel">Usar contraseña</string>
+
+    <!-- Mensajes de validación y error -->
+    <string name="auth_error_password_too_short">La contraseña maestra debe tener al menos 10 caracteres.</string>
+    <string name="auth_error_passwords_mismatch">Las contraseñas no coinciden.</string>
+    <string name="auth_error_password_empty">Introduce tu contraseña maestra.</string>
+    <string name="auth_error_invalid_password">[ERROR] Contraseña maestra incorrecta.</string>
+    <string name="auth_error_corrupted_vault">[ERROR] Los metadatos de la bóveda están dañados o son ilegibles.</string>
+    <string name="auth_error_not_initialized">[ERROR] La bóveda no está inicializada.</string>
+    <string name="auth_error_create_vault">[ERROR] No se pudo inicializar la bóveda cifrada.</string>
+    <string name="auth_error_load_state">[ERROR] No se pudo consultar el estado de la bóveda local.</string>
+    <string name="auth_warning_biometric_cancelled">[INFO] Biometría cancelada. Puedes usar tu contraseña maestra.</string>
+    <string name="auth_warning_biometric_enroll_cancelled">[INFO] Bóveda creada. Registro biométrico cancelado: reinténtalo o entra sin biometría.</string>
+    <string name="auth_warning_biometric_invalidated">[AVISO] La clave biométrica del Keystore fue invalidada tras un cambio de huellas. Usa tu contraseña maestra.</string>
+    <string name="auth_warning_biometric_lockout">[AVISO] Demasiados intentos biométricos. Accede con tu contraseña maestra.</string>
+    <string name="auth_error_biometric_hardware">[ERROR] No se pudo completar la operación biométrica. Usa tu contraseña maestra.</string>
+    <string name="auth_error_no_fragment_activity">[ERROR] El contexto actual no soporta el diálogo biométrico.</string>
 
     <!-- Pantalla Bóveda (esqueleto) -->
     <string name="vault_title">Bóveda local</string>

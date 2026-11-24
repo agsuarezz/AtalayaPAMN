@@ -6,7 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import es.ulpgc.pamn.atalaya.ui.screens.auth.UnlockPlaceholderScreen
+import es.ulpgc.pamn.atalaya.ui.screens.auth.AuthScreen
 import es.ulpgc.pamn.atalaya.ui.screens.boot.BootScreen
 import es.ulpgc.pamn.atalaya.ui.screens.generator.GeneratorPlaceholderScreen
 import es.ulpgc.pamn.atalaya.ui.screens.settings.SettingsPlaceholderScreen
@@ -35,7 +35,7 @@ fun AtalayaNavGraph(
         }
 
         composable(route = AtalayaDestination.Unlock.route) {
-            UnlockPlaceholderScreen(
+            AuthScreen(
                 onUnlockSuccess = {
                     navController.navigate(AtalayaDestination.VaultList.route) {
                         popUpTo(AtalayaDestination.Unlock.route) { inclusive = true }
